@@ -65,37 +65,40 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Call vim-plug 
 call plug#begin('~/.vim/plugger')
-  "NERD tree pluggins
-  Plug 'scrooloose/nerdtree'
-  " The Basics
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'itchyny/lightline.vim' " Lightline status bar
-  Plug 'frazrepo/vim-rainbow' " Highlight brackets
-  " Tim Pope plugins
-  Plug 'tpope/vim-fugitive' " Git extension
-  Plug 'tpope/vim-surround' " Surrond brackets
+	"NERD tree pluggins
+	Plug 'scrooloose/nerdtree'
+	" The Basics
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'itchyny/lightline.vim' " Lightline status bar
+	Plug 'frazrepo/vim-rainbow' " Highlight brackets
+	" Tim Pope plugins
+	Plug 'tpope/vim-fugitive' " Git extension
+	Plug 'tpope/vim-surround' " Surrond brackets
 	
-  " Vim indentation
-  Plug 'michaeljsmith/vim-indent-object'
-  " Theme
-  Plug 'morhetz/gruvbox'
+	" Vim indentation
+	Plug 'michaeljsmith/vim-indent-object'
+	" Theme
+	Plug 'morhetz/gruvbox'
   
-  " Language specific plugins
-  Plug 'vim-python/python-syntax'
-  Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-  " Intelsense and fuzzy finding
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'jiangmiao/auto-pairs'
+	" Language specific plugins
+	Plug 'vim-python/python-syntax'
+	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+	" Intelsense and fuzzy finding
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+	Plug 'jiangmiao/auto-pairs'
 
-  " Nerd tree plugins
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'ryanoasis/vim-devicons'
+	" Nerd tree plugins
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	Plug 'ryanoasis/vim-devicons'
 
-  " Vue pluggins
-  Plug 'leafOfTree/vim-vue'
+	" Vue pluggins
+	Plug 'leafOfTree/vim-vue'
+
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 let g:airline_theme='luna'
@@ -148,7 +151,6 @@ source $HOME/.config/nvim/plug-config/coc.vim
 let g:vim_vue_plugin_load_full_syntax = 1
 let g:vim_vue_plugin_use_scss = 1
 
+let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
 
-
-
-
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
