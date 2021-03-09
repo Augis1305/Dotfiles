@@ -1,7 +1,5 @@
+" My Vimrc
 
-" Set to ward off unexpected things that you distro might have made as well
-" As sanely reset options when re-sourcing .vimrc
-"set nocompatible
 set encoding=UTF-8
 
 filetype indent plugin on
@@ -10,7 +8,7 @@ filetype indent plugin on
 set clipboard+=unnamedplus
 
 " Enable syntax highlighting
-syntax off
+syntax on
 
 " Map space to leader key
 let mapleader=" "
@@ -35,23 +33,31 @@ set shiftwidth=4 softtabstop=4
 set tabstop=4
 set hidden
 set nobackup
-set nowritebackup
 set noswapfile
+set smartindent
+set termguicolors
 
 set cmdheight=2
-set updatetime=300
+set updatetime=50
 set shortmess+=c
 
 set nohlsearch
 set signcolumn=yes
+set colorcolumn=100
+
+set expandtab
 
 " set cursorline
 set number
 set noshowmode
 
+set guicursor=
+
 " Set relative line number
 " set relativenumber
 set rnu
+
+set scrolloff=10
 
 " Navigate through tabs using Alt/option + h/l
 " nnoremap <c-j> <c-w>
@@ -60,8 +66,8 @@ set rnu
 map <C-i> :NERDTreeToggle<CR> " C-i to toggle NERDtree
 
 " Open NERDTree autoamtically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_id=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_id=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Call vim-plug 
 call plug#begin('~/.vim/plugger')
@@ -72,22 +78,33 @@ call plug#begin('~/.vim/plugger')
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim' " Lightline status bar
 	Plug 'frazrepo/vim-rainbow' " Highlight brackets
+	
 	" Tim Pope plugins
 	Plug 'tpope/vim-fugitive' " Git extension
 	Plug 'tpope/vim-surround' " Surrond brackets
 	
 	" Vim indentation
 	Plug 'michaeljsmith/vim-indent-object'
+
 	" Theme
 	Plug 'morhetz/gruvbox'
+	Plug 'dracula/vim', {'as':'dracula'}
+	Plug 'ghifarit53/tokyonight-vim'
   
 	" Language specific plugins
 	Plug 'vim-python/python-syntax'
 	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-	" Intelsense and fuzzy finding
+
+	" Intelsense
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
+
+	" Telescope
+	Plug 'nvim-lua/popup.nvim'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+	" Auto pairs
 	Plug 'jiangmiao/auto-pairs'
 
 	" Nerd tree plugins
@@ -96,8 +113,6 @@ call plug#begin('~/.vim/plugger')
 
 	" Vue pluggins
 	Plug 'leafOfTree/vim-vue'
-
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -117,7 +132,8 @@ let g:rainbow_active = 1 " Enable vim-rainbow
 let g:python_highlight_all = 1 " Enable python syntax highlight
 
 " Set theme
-colorscheme gruvbox
+colorscheme tokyonight 
+" colorscheme dracula
 set background=dark
 
 " Allows to move text up and down with Capital J or K in visual mode
@@ -137,16 +153,7 @@ let NERDTreeDirArrrows = 1
 let NERDTreeShowHidden = 1
 
 "Fugitive setings
-
 nmap <leader>gs :G<CR>
-
-" FZF toggle
-map <leader>t :FZF<CR>
-let g:fzf_preview_window = ''
-
-" Import plugin settings
-
-source $HOME/.config/nvim/plug-config/coc.vim
 
 let g:vim_vue_plugin_load_full_syntax = 1
 let g:vim_vue_plugin_use_scss = 1
@@ -154,3 +161,5 @@ let g:vim_vue_plugin_use_scss = 1
 let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
 
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+
+
