@@ -13,7 +13,7 @@ syntax on
 " Map space to leader key
 let mapleader=" "
 
-" Leader + w to save the leader + q to close 
+" Leader + w to save the leader + q to close
 noremap <Leader>w :w<cr>
 noremap <Leader>q :q<cr>
 noremap <C-h> :tabprevious<CR>
@@ -26,7 +26,7 @@ inoremap jk <esc>
 set t_Co=256
 
 "set backspace=indent,eol,start
- 
+
 " => Text, tab and indent related
 set smarttab
 set shiftwidth=4 softtabstop=4
@@ -69,7 +69,7 @@ map <C-i> :NERDTreeToggle<CR> " C-i to toggle NERDtree
 "autocmd StdinReadPre * let s:std_id=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Call vim-plug 
+" Call vim-plug
 call plug#begin('~/.vim/plugger')
 	"NERD tree pluggins
 	Plug 'scrooloose/nerdtree'
@@ -78,11 +78,12 @@ call plug#begin('~/.vim/plugger')
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim' " Lightline status bar
 	Plug 'frazrepo/vim-rainbow' " Highlight brackets
-	
+
 	" Tim Pope plugins
 	Plug 'tpope/vim-fugitive' " Git extension
 	Plug 'tpope/vim-surround' " Surrond brackets
-	
+    Plug 'tpope/vim-commentary' " Easy comment
+
 	" Vim indentation
 	Plug 'michaeljsmith/vim-indent-object'
 
@@ -90,13 +91,9 @@ call plug#begin('~/.vim/plugger')
 	Plug 'morhetz/gruvbox'
 	Plug 'dracula/vim', {'as':'dracula'}
 	Plug 'ghifarit53/tokyonight-vim'
-  
+
 	" Language specific plugins
 	Plug 'vim-python/python-syntax'
-	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-
-	" Intelsense
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 	" Telescope
 	Plug 'nvim-lua/popup.nvim'
@@ -114,6 +111,21 @@ call plug#begin('~/.vim/plugger')
 	" Vue pluggins
 	Plug 'leafOfTree/vim-vue'
 
+    " lsp
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'tjdevries/nlua.nvim'
+    Plug 'tjdevries/lsp_extensions.nvim'
+
+    "Neovim Tree sitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    " Required rust plugin
+    Plug 'rust-lang/rust.vim'
+
+    " Saaaaaaaga
+    Plug 'glepnir/lspsaga.nvim'
+
 call plug#end()
 
 let g:airline_theme='luna'
@@ -127,26 +139,22 @@ let g:lightline = {
 	\	'gitbranch': 'FugitiveHead'
 	\}
 	\}
-    
+
 let g:rainbow_active = 1 " Enable vim-rainbow
 let g:python_highlight_all = 1 " Enable python syntax highlight
 
 " Set theme
-colorscheme tokyonight 
-" colorscheme dracula
+colorscheme tokyonight
 set background=dark
 
 " Allows to move text up and down with Capital J or K in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-	
+
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col -1] =~# '\s'
 endfunction
-
-"autocmd FileType go :call GoYCM()
-"autocmd FileType py :call GoCoc()
 
 " NerdTree configuration
 let NERDTreeDirArrrows = 1
@@ -155,11 +163,25 @@ let NERDTreeShowHidden = 1
 "Fugitive setings
 nmap <leader>gs :G<CR>
 
-let g:vim_vue_plugin_load_full_syntax = 1
-let g:vim_vue_plugin_use_scss = 1
+" Use <TAB> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
 
-autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+lua require("lsp")
+lua require("plugins")
+
+lua require'nvim-treesitter.configs'.setup { highlight = {enable = true } }
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup END
+
+autocmd BufWritePre * %s/\s\+$//e
 
 
