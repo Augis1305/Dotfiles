@@ -6,6 +6,7 @@ local on_attach = require'completion'.on_attach
 require'lspconfig'.rust_analyzer.setup{ on_attach=on_attach }
 require'lspconfig'.pyright.setup{ on_attach=on_attach }
 require'lspconfig'.vimls.setup{ on_attach=on_attach }
+require'lspconfig'.cssls.setup{ on_attach=on_attach }
 -- require'lspconfig'.rls.setup{ on_attach=on_attach }
 
 require'lspconfig'.sumneko_lua.setup {

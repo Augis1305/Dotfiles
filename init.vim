@@ -8,7 +8,7 @@ filetype indent plugin on
 set clipboard+=unnamedplus
 
 " Enable syntax highlighting
-syntax on
+syntax enable
 
 " Map space to leader key
 let mapleader=" "
@@ -73,13 +73,15 @@ map <C-i> :NERDTreeToggle<CR> " C-i to toggle NERDtree
 call plug#begin('~/.vim/plugger')
 	"NERD tree pluggins
 	Plug 'scrooloose/nerdtree'
+
 	" The Basics
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'itchyny/lightline.vim' " Lightline status bar
-	Plug 'frazrepo/vim-rainbow' " Highlight brackets
+	" Plug 'frazrepo/vim-rainbow' " Highlight brackets
+    Plug 'p00f/nvim-ts-rainbow'
 
-	" Tim Pope plugins
+    " Tim Pope plugins
 	Plug 'tpope/vim-fugitive' " Git extension
 	Plug 'tpope/vim-surround' " Surrond brackets
     Plug 'tpope/vim-commentary' " Easy comment
@@ -108,9 +110,6 @@ call plug#begin('~/.vim/plugger')
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'ryanoasis/vim-devicons'
 
-	" Vue pluggins
-	Plug 'leafOfTree/vim-vue'
-
     " lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
@@ -126,19 +125,21 @@ call plug#begin('~/.vim/plugger')
     " Saaaaaaaga
     Plug 'glepnir/lspsaga.nvim'
 
+    Plug 'phaazon/hop.nvim'
+
 call plug#end()
 
-let g:airline_theme='luna'
-let g:lightline = {
-	\'colorscheme': 'wombat',
-	\'active': {
-	\	'left': [['mode', 'paste'],
-	\						['gitbranch', 'readonly', 'filename', 'modified']]
-	\},
-	\'component_function': {
-	\	'gitbranch': 'FugitiveHead'
-	\}
-	\}
+" let g:airline_theme='luna'
+" let g:lightline = {
+" 	\'colorscheme': 'wombat',
+" 	\'active': {
+" 	\	'left': [['mode', 'paste'],
+" 	\						['gitbranch', 'readonly', 'filename', 'modified']]
+" 	\},
+" 	\'component_function': {
+" 	\	'gitbranch': 'FugitiveHead'
+" 	\}
+" 	\}
 
 let g:rainbow_active = 1 " Enable vim-rainbow
 let g:python_highlight_all = 1 " Enable python syntax highlight
@@ -170,18 +171,22 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
+" let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
 
 lua require("lsp")
 lua require("plugins")
-
-lua require'nvim-treesitter.configs'.setup { highlight = {enable = true } }
 
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
 augroup END
 
-autocmd BufWritePre * %s/\s\+$//e
+augroup remote_space
+    autocmd!
+    autocmd BufWritePre * %s/\s\+$//e
+augroup END
 
-
+augroup set_spell_check
+    autocmd!
+    autocmd BufWrite *.md setlocal spell spelllang=en_gb
+augroup END
