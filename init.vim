@@ -59,26 +59,9 @@ set rnu
 
 set scrolloff=10
 
-" Navigate through tabs using Alt/option + h/l
-" nnoremap <c-j> <c-w>
-
-" Toggle NERDTree
-map <C-i> :NERDTreeToggle<CR> " C-i to toggle NERDtree
-
-" Open NERDTree autoamtically when vim starts up if no files were specified
-"autocmd StdinReadPre * let s:std_id=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 " Call vim-plug
 call plug#begin('~/.vim/plugger')
-	"NERD tree pluggins
-	Plug 'scrooloose/nerdtree'
 
-	" The Basics
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'itchyny/lightline.vim' " Lightline status bar
-	" Plug 'frazrepo/vim-rainbow' " Highlight brackets
     Plug 'p00f/nvim-ts-rainbow'
 
     " Tim Pope plugins
@@ -107,7 +90,6 @@ call plug#begin('~/.vim/plugger')
 	Plug 'jiangmiao/auto-pairs'
 
 	" Nerd tree plugins
-	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'ryanoasis/vim-devicons'
 
     " lsp
@@ -127,26 +109,30 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'phaazon/hop.nvim'
 
-call plug#end()
+    Plug 'yamatsum/nvim-nonicons'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'kyazdani42/nvim-tree.lua'
 
-" let g:airline_theme='luna'
-" let g:lightline = {
-" 	\'colorscheme': 'wombat',
-" 	\'active': {
-" 	\	'left': [['mode', 'paste'],
-" 	\						['gitbranch', 'readonly', 'filename', 'modified']]
-" 	\},
-" 	\'component_function': {
-" 	\	'gitbranch': 'FugitiveHead'
-" 	\}
-" 	\}
+    Plug 'lewis6991/gitsigns.nvim'
+
+    Plug 'bluz71/vim-nightfly-guicolors'
+
+    Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
+
+    Plug 'liuchengxu/vista.vim'
+
+    Plug 'liuchengxu/vim-which-key'
+
+    Plug 'christianchiarulli/nvcode-color-schemes.vim'
+
+call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
 let g:python_highlight_all = 1 " Enable python syntax highlight
 
+" let g:tokyonight_style = 'storm'
 " Set theme
-colorscheme tokyonight
-set background=dark
+colorscheme nvcode
 
 " Allows to move text up and down with Capital J or K in visual mode
 vnoremap J :m '>+1<CR>gv=gv
@@ -156,10 +142,6 @@ function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col -1] =~# '\s'
 endfunction
-
-" NerdTree configuration
-let NERDTreeDirArrrows = 1
-let NERDTreeShowHidden = 1
 
 "Fugitive setings
 nmap <leader>gs :G<CR>
@@ -172,6 +154,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set shortmess+=c
 
 " let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
+
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 lua require("lsp")
 lua require("plugins")
@@ -190,3 +174,4 @@ augroup set_spell_check
     autocmd!
     autocmd BufWrite *.md setlocal spell spelllang=en_gb
 augroup END
+

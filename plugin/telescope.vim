@@ -9,3 +9,4 @@ nnoremap <Leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <Leader>gc <cmd>lua require('telescope.builtin').git_commits()<cr>
 
 
+
