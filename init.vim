@@ -125,8 +125,6 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
-    Plug 'mhinz/vim-startify'
-
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
@@ -177,3 +175,4 @@ augroup set_spell_check
     autocmd BufWrite *.md setlocal spell spelllang=en_gb
 augroup END
 
+let g:rustfmt_autosave = 0
