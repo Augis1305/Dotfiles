@@ -125,6 +125,8 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
+    Plug 'mhinz/vim-startify'
+
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
@@ -167,7 +169,7 @@ augroup END
 
 augroup remote_space
     autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
+    autocmd BufWritePre *.md *.lua *.vim %s/\s\+$//e
 augroup END
 
 augroup set_spell_check
