@@ -125,6 +125,10 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
+    Plug 'onsails/lspkind-nvim'
+
+    Plug 'romgrk/barbar.nvim'
+    
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
