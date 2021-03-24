@@ -128,7 +128,11 @@ call plug#begin('~/.vim/plugger')
     Plug 'onsails/lspkind-nvim'
 
     Plug 'romgrk/barbar.nvim'
-    
+
+    Plug 'TimUntersberger/neogit'
+
+    Plug 'f-person/git-blame.nvim'
+
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
@@ -180,3 +184,9 @@ augroup set_spell_check
 augroup END
 
 let g:rustfmt_autosave = 0
+
+let bufferline = get(g:, 'bufferline', {})
+let bufferline.auto_hide = v:true
+
+nnoremap <silent> <Leader>cb :BufferClose<CR>
+
