@@ -83,8 +83,8 @@ call plug#begin('~/.vim/plugger')
 	" Telescope
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'nvim-telescope/telescope-fzy-native.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 	" Auto pairs
 	Plug 'jiangmiao/auto-pairs'
@@ -127,11 +127,13 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'onsails/lspkind-nvim'
 
-    Plug 'romgrk/barbar.nvim'
+    " Plug 'romgrk/barbar.nvim'
 
     Plug 'TimUntersberger/neogit'
 
     Plug 'f-person/git-blame.nvim'
+
+    Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
 
@@ -175,7 +177,7 @@ augroup END
 
 augroup remote_space
     autocmd!
-    autocmd BufWritePre *.md *.lua *.vim %s/\s\+$//e
+    autocmd BufWritePre *.vim %s/\s\+$//e
 augroup END
 
 augroup set_spell_check
@@ -188,5 +190,4 @@ let g:rustfmt_autosave = 0
 let bufferline = get(g:, 'bufferline', {})
 let bufferline.auto_hide = v:true
 
-nnoremap <silent> <Leader>cb :BufferClose<CR>
 
