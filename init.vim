@@ -135,6 +135,8 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'hrsh7th/nvim-compe'
 
+    Plug 'adelarsq/neoline.vim'
+
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
@@ -163,10 +165,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-" let g:python3_host_prog = "~/PythonEnv/bin/python3.8"
-
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
 lua require("lsp")
 lua require("plugins")
 
@@ -189,5 +187,4 @@ let g:rustfmt_autosave = 0
 
 let bufferline = get(g:, 'bufferline', {})
 let bufferline.auto_hide = v:true
-
 
