@@ -144,7 +144,8 @@ let g:python_highlight_all = 1 " Enable python syntax highlight
 
 " let g:tokyonight_style = 'storm'
 " Set theme
-colorscheme nvcode
+" colorscheme nvcode
+colorscheme tokyonight
 
 " Allows to move text up and down with Capital J or K in visual mode
 vnoremap J :m '>+1<CR>gv=gv
@@ -180,11 +181,12 @@ augroup END
 
 augroup set_spell_check
     autocmd!
-    autocmd BufWrite *.md setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile,BufWrite *.md setlocal spell spelllang=en_gb
 augroup END
+au BufRead,BufNewFile *.md setlocal textwidth=80
 
 let g:rustfmt_autosave = 0
 
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.auto_hide = v:true
+nmap <leader>g :copen<CR>
 
+syn keyword TODO Todo
