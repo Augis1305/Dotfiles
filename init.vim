@@ -57,7 +57,6 @@ set guicursor=
 " set relativenumber
 set rnu
 
-set scrolloff=10
 
 " Call vim-plug
 call plug#begin('~/.vim/plugger')
