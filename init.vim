@@ -1,5 +1,6 @@
 " My Vimrc
 
+
 set encoding=UTF-8
 
 filetype indent plugin on
