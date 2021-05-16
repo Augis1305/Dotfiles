@@ -74,7 +74,7 @@ call plug#begin('~/.vim/plugger')
 	" Theme
 	Plug 'morhetz/gruvbox'
 	Plug 'dracula/vim', {'as':'dracula'}
-	Plug 'ghifarit53/tokyonight-vim'
+	" Plug 'ghifarit53/tokyonight-vim'
 
 	" Language specific plugins
 	Plug 'vim-python/python-syntax'
@@ -136,15 +136,17 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'adelarsq/neoline.vim'
 
+    Plug 'folke/tokyonight.nvim'
+
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
 let g:python_highlight_all = 1 " Enable python syntax highlight
 
-" let g:tokyonight_style = 'storm'
 " Set theme
 " colorscheme nvcode
-colorscheme tokyonight
+" let g:tokyonight_style = "night"
+" let g:tokyonight_italic_functions = "true"
 
 " Allows to move text up and down with Capital J or K in visual mode
 vnoremap J :m '>+1<CR>gv=gv
