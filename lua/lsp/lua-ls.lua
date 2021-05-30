@@ -9,6 +9,7 @@ require'lspconfig'.vimls.setup{ on_attach=on_attach }
 require'lspconfig'.cssls.setup{ on_attach=on_attach }
 require'lspconfig'.jsonls.setup{ on_attach=on_attach }
 require'lspconfig'.tsserver.setup{ on_attach=on_attach }
+require'lspconfig'.bashls.setup{ on_attach=on_attach }
 -- require'lspconfig'.rls.setup{ on_attach=on_attach }
 
 require'lspconfig'.sumneko_lua.setup {
