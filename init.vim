@@ -134,19 +134,17 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'hrsh7th/nvim-compe'
 
-    Plug 'adelarsq/neoline.vim'
+    " Plug 'adelarsq/neoline.vim'
 
     Plug 'folke/tokyonight.nvim'
+
+    Plug 'sirver/ultisnips'
+    Plug 'honza/vim-snippets'
 
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow
 let g:python_highlight_all = 1 " Enable python syntax highlight
-
-" Set theme
-" colorscheme nvcode
-" let g:tokyonight_style = "night"
-" let g:tokyonight_italic_functions = "true"
 
 " Allows to move text up and down with Capital J or K in visual mode
 vnoremap J :m '>+1<CR>gv=gv
@@ -191,3 +189,8 @@ let g:rustfmt_autosave = 0
 nmap <leader>g :copen<CR>
 
 syn keyword TODO Todo
+
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-f>"
+
