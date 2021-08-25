@@ -1,5 +1,4 @@
 " My Vimrc
-
 set encoding=UTF-8
 
 filetype indent plugin on
@@ -86,9 +85,10 @@ call plug#begin('~/.vim/plugger')
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 	" Auto pairs
-	Plug 'jiangmiao/auto-pairs'
+	" Plug 'jiangmiao/auto-pairs'
+    Plug 'windwp/nvim-autopairs'
 
-	" Nerd tree plugins
+    " Nerd tree plugins
 	Plug 'ryanoasis/vim-devicons'
 
     " lsp
