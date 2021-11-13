@@ -5,6 +5,7 @@ filetype indent plugin on
 
 "set clipboard+=unnamedplus " Copy/paste between vim and other programs
 set clipboard+=unnamedplus
+set completeopt=menu,menuone,noselect
 
 " Enable syntax highlighting
 syntax enable
@@ -132,14 +133,18 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'f-person/git-blame.nvim'
 
-    Plug 'hrsh7th/nvim-compe'
-
     " Plug 'adelarsq/neoline.vim'
 
     Plug 'folke/tokyonight.nvim'
 
     Plug 'sirver/ultisnips'
-    Plug 'honza/vim-snippets'
+
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
 
@@ -189,8 +194,4 @@ let g:rustfmt_autosave = 0
 nmap <leader>g :copen<CR>
 
 syn keyword TODO Todo
-
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-f>"
 

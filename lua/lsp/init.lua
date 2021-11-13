@@ -1,2 +1,2 @@
 require("lsp.lua-ls")
--- require("lsp.go")
+require("lsp.go")

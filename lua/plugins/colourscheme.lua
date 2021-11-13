@@ -5,5 +5,5 @@ vim.g.tokyonight_dark_float = true
 -- vim.g.tokyonight_transparent = true
 vim.g.tokyonight_dark_sidebar = true
 
--- vim.cmd[[colorscheme tokyonight]]
-vim.cmd[[colorscheme dracula]]
+vim.cmd[[colorscheme tokyonight]]
+-- vim.cmd[[colorscheme dracula]]
