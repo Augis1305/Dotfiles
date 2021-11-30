@@ -16,9 +16,10 @@ let mapleader=" "
 " Leader + w to save the leader + q to close
 noremap <Leader>w :w<cr>
 noremap <Leader>q :q<cr>
-noremap <C-h> :tabprevious<CR>
-noremap <C-l> :tabnext<CR>
-"
+noremap <C-h> :BufferLineCycleNext<CR>
+noremap <C-l> :BufferLineCyclePrev<CR>
+noremap <Leader>bd :bd<CR>
+
 " Map jk to be escape key
 inoremap jk <esc>
 
@@ -72,7 +73,6 @@ call plug#begin('~/.vim/plugger')
 	Plug 'michaeljsmith/vim-indent-object'
 
 	" Theme
-	Plug 'morhetz/gruvbox'
 	Plug 'dracula/vim', {'as':'dracula'}
 	" Plug 'ghifarit53/tokyonight-vim'
 
@@ -127,13 +127,9 @@ call plug#begin('~/.vim/plugger')
 
     Plug 'onsails/lspkind-nvim'
 
-    " Plug 'romgrk/barbar.nvim'
-
     Plug 'TimUntersberger/neogit'
 
     Plug 'f-person/git-blame.nvim'
-
-    " Plug 'adelarsq/neoline.vim'
 
     Plug 'folke/tokyonight.nvim'
 
@@ -142,10 +138,15 @@ call plug#begin('~/.vim/plugger')
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'L3MON4D3/LuaSnip'
     Plug 'saadparwaiz1/cmp_luasnip'
 
+    Plug 'akinsho/bufferline.nvim'
+
+    Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 let g:rainbow_active = 1 " Enable vim-rainbow

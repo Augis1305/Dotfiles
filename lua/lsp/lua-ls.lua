@@ -36,7 +36,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities();
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true;
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local servers = { 'rust_analyzer', 'tsserver', 'pyright', 'vimls', 'jsonls', 'vuels'}
+local servers = { 'rust_analyzer', 'tsserver', 'pyright', 'vimls', 'jsonls' }
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
@@ -85,6 +85,38 @@ require'lspconfig'.gopls.setup{
     },
 }
 
+require'lspconfig'.vuels.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        vetur = {
+            completion = {
+                autoImport = true,
+                tagCasing = "kebab",
+                useScaffoldSnippets = true
+            },
+            userWorkspaceDepedencies = true,
+            experimental = {
+                templateInterpolationService = true
+            },
+            format = {
+                enable = true,
+                options = {
+                    useTabs = false,
+                    tabSize = 4
+                }
+            },
+            validation = {
+                template = false,
+                script = true,
+                style = true,
+                templateProps = true,
+                interpoation = true
+            },
+        },
+    }
+}
+
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
@@ -116,6 +148,12 @@ cmp.setup {
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' }
-  },
+    },
+    cmp.setup.cmdline(':', {
+        sources = cmp.config.sources({
+            { name = 'path' }
+        }, {
+            { name = 'cmdline' }
+        })
+    }),
 }
-
