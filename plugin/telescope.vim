@@ -8,5 +8,5 @@ nnoremap <Leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <Leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <Leader>gc <cmd>lua require('telescope.builtin').git_commits()<cr>
 
-nnoremap <Leader>d <cmd>lua require('telescope.builtin').lsp_document_diagnostics()<cr>
+nnoremap <Leader>d <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>
 

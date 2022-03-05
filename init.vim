@@ -196,3 +196,5 @@ nmap <leader>g :copen<CR>
 
 syn keyword TODO Todo
 
+highlight Normal guibg=none
+highlight NonText guibg=none
