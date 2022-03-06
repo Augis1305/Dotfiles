@@ -76,6 +76,12 @@ return require('packer').startup({
         use('tpope/vim-fugitive')
         use('sindrets/diffview.nvim')
 
+        -- zk
+        use('mickael-menu/zk-nvim')
+
+        -- Float term
+        use('voldikss/vim-floaterm')
+
     end,
 })
 

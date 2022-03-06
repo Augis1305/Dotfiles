@@ -29,3 +29,7 @@ require('ac.statusline')
 require('ac.telescope')
 
 require('ac.colorizer')
+
+require('ac.floaterm')
+
+require('ac.zk')
