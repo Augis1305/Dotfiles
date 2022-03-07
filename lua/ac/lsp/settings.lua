@@ -26,7 +26,7 @@ local function on_attach(client)
 	nnoremap("<leader>rr", vim.lsp.buf.rename)
 	nnoremap("g[", vim.diagnostic.goto_prev)
 	nnoremap("g]", vim.diagnostic.goto_next)
-	nnoremap("<leader>ff", vim.lsp.buf.formatting)
+	nnoremap("<leader>ff", vim.lsp.buf.formatting_sync)
 
 	if client.name == "tsserver" or client.name == "html" or client.name == "lua" then
 		client.resolved_capabilities.document_formatting = false
