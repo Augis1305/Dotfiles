@@ -1,4 +1,3 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
-require('init')
-
+require("init")

@@ -1,2 +1,2 @@
-require('ac.defaults.settings')
-require('ac.defaults.remaps')
+require("ac.defaults.settings")
+require("ac.defaults.remaps")

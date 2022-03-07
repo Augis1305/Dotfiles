@@ -1,1 +1,1 @@
-require('ac.gitsigns.settings')
+require("ac.gitsigns.settings")

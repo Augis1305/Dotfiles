@@ -1,1 +1,1 @@
-require('ac.colorizer.settings')
+require("ac.colorizer.settings")
