@@ -21,15 +21,17 @@ end
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "github",
+		theme = "gruvbox_dark",
 		section_separators = { "", "" },
 		component_separators = { "", "" },
 		disabled_filetypes = {},
 		padding = 1,
+        globalstatus = true,
 	},
 	sections = {
-		lualine_a = { { "mode", fmt = modify_mode_text } },
-		lualine_b = { "branch" },
+		-- lualine_a = { { "mode", fmt = modify_mode_text } },
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff" },
 		lualine_c = {
 			{ "filename", file_status = true, path = 1 },
 			require("lsp-status").status,

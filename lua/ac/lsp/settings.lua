@@ -51,6 +51,7 @@ local servers = {
 	vimls = {},
 	rust_analyzer = { filetype = { "rust" } },
 	rls = { filetype = { "rust" } },
+    vuels = {},
 	jsonls = {},
 	gopls = {
 		cmd = { "gopls", "serve" },
