@@ -53,18 +53,20 @@ local servers = {
 	rls = { filetype = { "rust" } },
 	vuels = {},
 	jsonls = {},
-	-- gopls = {
-	-- 	cmd = { "gopls", "serve" },
-	-- 	filetypes = { "go", "gomod" },
-	-- 	rood_dit = util.root_pattern("go.mod", ".git"),
-	-- 	codelens = { generate = true, gc_details = true },
-	-- 	semanticTokens = true,
-	-- },
-	golangci_lint_ls = {
-		cmd = { "golangci-lint-langserver" },
+	gopls = {
+		cmd = { "gopls", "serve" },
 		filetypes = { "go", "gomod" },
-		command = { "golangci-lint", "run", "--out-format", "json" },
+		rood_dit = util.root_pattern("go.mod", ".git"),
+		codelens = { generate = true, gc_details = true },
+		semanticTokens = true,
 	},
+	-- golangci_lint_ls = {
+	-- 	cmd = { "golangci-lint-langserver" },
+	-- 	filetypes = { "go", "gomod" },
+	-- 	init_options = {
+	-- 		command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json" },
+	-- 	},
+	-- },
 	tsserver = {
 		cmd = { "typescript-language-server", "--stdio" },
 		rood_dit = function()
