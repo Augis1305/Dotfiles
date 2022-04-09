@@ -17,7 +17,7 @@ telescope.setup({
 		selection_strategy = "reset",
 		sorting_strategy = "descending",
 		layout_strategy = "flex",
-		layout_config = { vertical = { width = 075 } },
+		layout_config = { vertical = { width = 0.75 } },
 		mappings = {
 			i = {
 				["<C-k>"] = actions.preview_scrolling_up,
@@ -50,10 +50,9 @@ telescope.setup({
 				n = { ["<C-d>"] = actions.delete_buffer },
 			},
 		},
+        git_files = {
+            theme = "ivy",
+        }
 	},
 	extensions = {},
 })
-
--- telescope.load_extension('projects')
--- require('telescope').load_extension('fzf')
--- require('project_nvim').setup({ patterns = { '.git' } })
