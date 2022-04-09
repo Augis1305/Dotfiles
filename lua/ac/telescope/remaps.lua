@@ -18,5 +18,5 @@ nnoremap("<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<cr>"
 nnoremap("<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<cr>")
 nnoremap("<leader>gs", "<cmd>lua require('telescope.builtin').git_status()<cr>")
 nnoremap("<leader>gp", "<cmd>lua require('telescope.builtin').git_bcommits()<cr>")
-nnoremap("<leader>p", "<cmd>Telescope projects<cr>")
+nnoremap("<leader>p", "<cmd>Telescope projects <cr>")
 nnoremap("<leader>sc", "<cmd>lua require('telescope.builtin').spell_suggest()<cr>")

@@ -12,6 +12,9 @@ local function nnoremap(input, output)
 end
 local function on_attach(client)
 	lsp_status.on_attach(client)
+    if client.name == "gopls" then
+        client.resolved_capabilities.document_formatting = false
+    end
 
 	-- use omnifunc
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
