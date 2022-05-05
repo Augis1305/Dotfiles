@@ -1,7 +1,7 @@
 -- Set some variables
 vim.g.nvim_tree_side = "left"
 vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_indent_markers = 1
+-- vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_root_folder_modifier = ":~"
 vim.g.nvim_tree_show_icons = { git = 0, folders = 1, files = 1 }
@@ -60,10 +60,10 @@ vim.g.nvim_tree_icons = {
 }
 
 require("nvim-tree").setup({
-	auto_close = false,
-	update_to_buf_dir = {
-		auto_open = false,
-	},
+	-- auto_close = false,
+	-- update_to_buf_dir = {
+	-- 	auto_open = false,
+	-- },
 	view = {
 		width = 40,
 		side = "left",

@@ -64,6 +64,6 @@ vim.cmd([[
 
 -- Event listeners
 
-addEventListener('LuaHighlight', { 'TextYankPost * silent!' }, function ()
-    require('vim.highlight').on_yank{ timeout = 250 }
+addEventListener("LuaHighlight", { "TextYankPost * silent!" }, function()
+	require("vim.highlight").on_yank({ timeout = 250 })
 end)

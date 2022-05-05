@@ -12,9 +12,9 @@ local function nnoremap(input, output)
 end
 local function on_attach(client)
 	lsp_status.on_attach(client)
-    if client.name == "gopls" then
-        client.resolved_capabilities.document_formatting = false
-    end
+	if client.name == "gopls" then
+		client.server_capabilities.document_formatting = false
+	end
 
 	-- use omnifunc
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -29,10 +29,10 @@ local function on_attach(client)
 	nnoremap("<leader>rr", vim.lsp.buf.rename)
 	nnoremap("g[", vim.diagnostic.goto_prev)
 	nnoremap("g]", vim.diagnostic.goto_next)
-	nnoremap("<leader>ff", vim.lsp.buf.formatting_sync)
+	nnoremap("<leader>ff", vim.lsp.buf.format)
 
 	if client.name == "tsserver" or client.name == "html" or client.name == "lua" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 	end
 end
 
@@ -62,6 +62,8 @@ local servers = {
 		rood_dit = util.root_pattern("go.mod", ".git"),
 		codelens = { generate = true, gc_details = true },
 		semanticTokens = true,
+		experimentalWorkspaceModule = true,
+		experimentalPostfixCompletions = true,
 	},
 	-- golangci_lint_ls = {
 	-- 	cmd = { "golangci-lint-langserver" },
