@@ -1,5 +1,5 @@
 local scopes = { o = vim.o, b = vim.bo, w = vim.wo, g = vim.g }
-local indent = 4
+local indent = 2
 
 local function opt(scope, key, value)
 	scopes[scope][key] = value

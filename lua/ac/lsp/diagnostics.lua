@@ -1,9 +1,10 @@
 vim.diagnostic.config({
-	virtual_text = { spacing = 4, prefix = "●" },
+	virtual_text = { spacing = 4, prefix = "●", virtual_text = true},
 	float = { border = "rounded", source = "if_many" },
 	signs = true,
 	update_in_insert = false,
 })
+
 vim.lsp.buf.definition = require("telescope.builtin").lsp_definitions
 vim.lsp.buf.references = require("telescope.builtin").lsp_references
 
@@ -16,3 +17,11 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 	silent = true,
 	focusable = false, -- Sometimes gets set to true if not set explicitly to false for some reason
 })
+
+vim.lsp.handlers["testDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        virtual_text = true,
+        signs = true,
+    }
+)
