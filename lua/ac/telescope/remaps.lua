@@ -2,7 +2,7 @@ local utils = require("ac.telescope.utils")
 
 --- Telescope config
 --- Using lua functions
-nnoremap("<leader>f", utils.find_files)
+nnoremap("<leader>af", utils.find_files)
 nnoremap("<C-f>", utils.live_grep)
 nnoremap("<leader>fs", utils.grep_string)
 nnoremap("<leader>b", utils.buffers)

@@ -1,18 +1,3 @@
--- require("null-ls").setup({
--- 	sources = {
--- 		-- require("null-ls").builtins.formatting.stylua,
--- 		-- require("null-ls").builtins.formatting.prettier,
--- 		-- require("null-ls").builtins.diagnostics.eslint,
---
--- 		-- require("null-ls").builtins.diagnostics.golangci_lint,
--- 		-- require("null-ls").builtins.formatting.golines,
---
--- 		require("null-ls").builtins.completion.spell,
--- 		require("null-ls").builtins.hover.dictionary,
--- 	},
--- })
-
-
 local null_ls = require('null-ls')
 local b = null_ls.builtins
 
@@ -55,7 +40,7 @@ null_ls.setup({
   sources = {
     -- Lua
     b.formatting.stylua.with({ runtime_condition = stylua_runtime_condition }),
-    
+
     b.formatting.prettier,
     b.code_actions.eslint,
 

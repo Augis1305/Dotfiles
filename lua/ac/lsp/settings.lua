@@ -4,40 +4,24 @@ local util = require('lspconfig/util')
 local home = os.getenv('HOME')
 local utils = require('ac.telescope.utils')
 
-local function mapping(client)
-  nnoremap('gd', vim.lsp.buf.definition)
-  nnoremap('K', vim.lsp.buf.hover)
-  nnoremap('gs', vim.lsp.buf.signature_help)
-  nnoremap('gi', vim.lsp.buf.implementation)
-  nnoremap('gt', vim.lsp.buf.type_definition)
-  nnoremap('<leader>gw', vim.lsp.buf.document_symbol)
-  nnoremap('<leader>gW', vim.lsp.buf.workspace_symbol)
-  nnoremap('<leader>rr', vim.lsp.buf.rename)
-  nnoremap('g[', vim.diagnostic.goto_prev)
-  nnoremap('g]', vim.diagnostic.goto_next)
-  nnoremap('<leader>ff', vim.lsp.buf.format { async = true })
-
-  -- local buf_name = vim.fn.expand('%s')
-  -- if string.find(buf_name, 'NvimTree*') == nil and client ~= nil then
-  --   vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
-  --   -- if client.resolved_capabilities.document_highlight then
-  --   if client.server_capabilities.documentHighlightProvider then
-  --     vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
-  --   end
-  --   -- if client.resolved_capabilities.code_lens then
-  --   if client.server_capabilities.code_lens then
-  --     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
-  --   end
-  -- end
-end
-
-local function on_attach(client)
+local function on_attach(client, bufnr)
   lsp_status.on_attach(client)
 
-  -- use omnifunc
-  vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  mapping(client)
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>gw', vim.lsp.buf.document_symbol, bufopts)
+  vim.keymap.set('n', '<leader>gW', vim.lsp.buf.workspace_symbol, bufopts)
+  vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, bufopts)
+  vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, bufopts)
+  vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
 
   if client.name == 'tsserver' or client.name == 'html' or client.name == 'lua' then
     -- client.resolved_capabilities.document_formatting = false
