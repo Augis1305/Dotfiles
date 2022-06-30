@@ -22,6 +22,7 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, bufopts)
   vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
 
   if client.name == 'tsserver' or client.name == 'html' or client.name == 'lua' then
     -- client.resolved_capabilities.document_formatting = false

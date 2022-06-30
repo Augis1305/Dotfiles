@@ -35,3 +35,7 @@ require("ac.floaterm")
 require("ac.zk")
 
 require("ac.null-ls")
+
+require("ac.lspkind")
+
+require("ac.telescope-ui")
