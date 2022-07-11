@@ -2,10 +2,10 @@ local scopes = { o = vim.o, b = vim.bo, w = vim.wo, g = vim.g }
 local indent = 2
 
 local function opt(scope, key, value)
-	scopes[scope][key] = value
-	if scopes ~= "o" then
-		scopes["o"][key] = value
-	end
+  scopes[scope][key] = value
+  if scopes ~= "o" then
+    scopes["o"][key] = value
+  end
 end
 
 -- vim.g.did_load_filetypes = 1
@@ -65,5 +65,5 @@ vim.cmd([[
 -- Event listeners
 
 addEventListener("LuaHighlight", { "TextYankPost * silent!" }, function()
-	require("vim.highlight").on_yank({ timeout = 250 })
+  require("vim.highlight").on_yank({ timeout = 250 })
 end)

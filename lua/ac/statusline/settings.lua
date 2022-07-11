@@ -21,7 +21,8 @@ end
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "gruvbox_dark",
+		-- theme = "gruvbox_dark",
+		theme = "catppuccin",
 		section_separators = { "", "" },
 		component_separators = { "", "" },
 		disabled_filetypes = {},
@@ -34,7 +35,6 @@ require("lualine").setup({
 		lualine_b = { "branch", "diff" },
 		lualine_c = {
 			{ "filename", file_status = true, path = 1 },
-			require("lsp-status").status,
 		},
 		lualine_x = {
 			{

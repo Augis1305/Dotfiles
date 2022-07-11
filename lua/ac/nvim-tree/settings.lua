@@ -54,7 +54,7 @@ require("nvim-tree").setup({
         highlight_git = true,
         icons = {
             glyphs = {
-                folder = { default = "", open = " " },
+                -- folder = { open = " " },
                 default = "",
                 symlink = "",
 

@@ -39,3 +39,13 @@ require("ac.null-ls")
 require("ac.lspkind")
 
 require("ac.telescope-ui")
+
+require("ac.catpuccino")
+
+require("ac.indent-line")
+
+require("ac.hop")
+
+require("ac.diffview")
+
+require("ac.barbar")

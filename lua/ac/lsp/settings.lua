@@ -1,11 +1,9 @@
 local nvim_lsp = require('lspconfig')
-local lsp_status = require('lsp-status')
 local util = require('lspconfig/util')
 local home = os.getenv('HOME')
 local utils = require('ac.telescope.utils')
 
 local function on_attach(client, bufnr)
-  lsp_status.on_attach(client)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -29,8 +27,6 @@ local function on_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 end
-
-lsp_status.register_progress()
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()

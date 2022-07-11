@@ -3,4 +3,7 @@
 -- 	comment_style = "italic",
 -- })
 
-vim.api.nvim_command [[ colorscheme tokyonight ]]
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+-- vim.api.nvim_command [[ colorscheme tokyonight]]
+-- vim.api.nvim_command [[ colorscheme catppuccin]]
+vim.cmd[[colorscheme catppuccin]]
