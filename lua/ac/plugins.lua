@@ -102,5 +102,10 @@ return require("packer").startup({
       requires = { 'kyazdani42/nvim-web-devicons' }
     }
 
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+    }
+
   end,
 })
