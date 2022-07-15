@@ -23,6 +23,7 @@ require("lualine").setup({
 		icons_enabled = true,
 		-- theme = "gruvbox_dark",
 		theme = "catppuccin",
+		-- theme = "tokyonight",
 		section_separators = { "", "" },
 		component_separators = { "", "" },
 		disabled_filetypes = {},

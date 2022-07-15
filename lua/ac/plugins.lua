@@ -33,7 +33,7 @@ return require("packer").startup({
     use("kyazdani42/nvim-web-devicons")
     use("gruvbox-community/gruvbox")
     use("nvim-treesitter/nvim-treesitter")
-    use("ghifarit53/tokyonight-vim")
+    use("folke/tokyonight.nvim")
     use("projekt0n/github-nvim-theme")
     use("jose-elias-alvarez/null-ls.nvim")
 
