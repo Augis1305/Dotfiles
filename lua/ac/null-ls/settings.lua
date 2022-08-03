@@ -41,7 +41,7 @@ null_ls.setup({
     -- Lua
     b.formatting.stylua.with({ runtime_condition = stylua_runtime_condition }),
 
-    b.formatting.prettier,
+    b.formatting.prettierd,
     b.code_actions.eslint,
 
     -- Git

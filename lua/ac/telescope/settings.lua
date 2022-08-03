@@ -13,7 +13,7 @@ telescope.setup({
       "--column",
       "--smart-case",
     },
-    prompt_prefix = ">",
+    prompt_prefix = "> ",
     selection_strategy = "reset",
     sorting_strategy = "descending",
     layout_strategy = "flex",
@@ -24,9 +24,11 @@ telescope.setup({
         ["<C-j>"] = actions.preview_scrolling_down,
       },
     },
-    file_sorter = require("telescope.sorters").get_fzy_sorter,
-    file_ignore_patterns = { "yarn.lock", "package-lock" },
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+
+    -- file_sorter = require("telescope.sorters").get_fzy_sorter,
+    -- file_ignore_patterns = { "yarn.lock", "package-lock" },
+    -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+
     winblend = 0,
     border = {},
     borderchars = {
@@ -52,7 +54,10 @@ telescope.setup({
     },
     git_files = {
       theme = "ivy",
-    }
+    },
+    lsp_references = { path_display = { "shorten" } },
+    lsp_code_actions = { theme = "dropdown" },
+    current_buffer_fuzzy_find = { theme = "dropdown" },
   },
   extensions = {
     ["ui-select"] = {
