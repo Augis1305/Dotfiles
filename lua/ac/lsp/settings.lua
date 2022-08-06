@@ -4,7 +4,6 @@ local home = os.getenv('HOME')
 local utils = require('ac.telescope.utils')
 
 local function on_attach(client, bufnr)
-
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -21,6 +20,7 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, bufopts)
   vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>R', '<cmd>RustRun<cr>', bufopts)
 
   if client.name == 'tsserver' or client.name == 'html' or client.name == 'lua' then
     -- client.resolved_capabilities.document_formatting = false
@@ -31,7 +31,7 @@ end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local sumneko_binary = home .. "/.config/nvim/lua-language-server/bin/lua-language-server"
+local sumneko_binary = home .. '/.config/nvim/lua-language-server/bin/lua-language-server'
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -44,8 +44,10 @@ local servers = {
   vimls = {},
   dockerls = {},
   yamlls = {},
-  rust_analyzer = { filetypes = { 'rust' } },
-  rls = { filetypes = { 'rust' } },
+  rust_analyzer = {
+    filetypes = { 'rust' },
+  },
+  -- rls = { filetypes = { 'rust' } },
   jsonls = { filetypes = { 'json', 'avsc' } },
   tsserver = {
     cmd = { 'typescript-language-server', '--stdio' },
@@ -131,7 +133,7 @@ local servers = {
     filetypes = { 'markdown' },
   },
   terraform_lsp = {
-    filetypes = { 'terraform', 'tf' }
+    filetypes = { 'terraform', 'tf' },
   },
 }
 
@@ -156,12 +158,3 @@ end
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
-
-local lsp_group = vim.api.nvim_create_augroup("lsp", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "scala", "sbt", "java" },
-  callback = function()
-    require("metals").initialize_or_attach(metals_config)
-  end,
-  group = lsp_group,
-})
