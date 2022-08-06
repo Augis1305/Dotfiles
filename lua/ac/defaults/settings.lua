@@ -12,8 +12,7 @@ end
 
 opt("g", "redrawtime", 10000)
 opt("g", "lazyredraw", true)
-opt("b", "expandtab", true) -- Use spaces instead of tabs
-opt("b", "shiftwidth", indent) -- Size of an indent
+opt("b", "expandtab", true) -- Use spaces instead of tabs opt("b", "shiftwidth", indent) -- Size of an indent
 opt("b", "smartindent", true) -- Insert indents automatically
 opt("b", "tabstop", indent) -- Number of spaces tabs count for
 opt("o", "smarttab", true)
@@ -53,6 +52,9 @@ opt("o", "undofile", false)
 opt("o", "completeopt", "menu,menuone,noselect")
 opt("o", "shortmess", "csa")
 opt("o", "background", "dark")
+opt("o", "cursorline")
+opt("o", "cursorlineopt", "number")
+opt("o", "cursorline", true)
 
 vim.cmd([[
     set noswapfile
