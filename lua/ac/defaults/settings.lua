@@ -55,7 +55,7 @@ opt("o", "background", "dark")
 opt("o", "cursorline")
 opt("o", "cursorlineopt", "number")
 opt("o", "cursorline", true)
-opt("o", "colorcolumn", "120")
+opt("o", "colorcolumn", "80")
 
 
 vim.cmd([[
