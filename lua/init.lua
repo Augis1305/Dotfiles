@@ -51,3 +51,5 @@ require('ac.diffview')
 require('ac.barbar')
 
 require('ac.trouble')
+
+require('ac.dap')

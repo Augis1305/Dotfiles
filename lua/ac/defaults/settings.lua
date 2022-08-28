@@ -57,7 +57,6 @@ opt("o", "cursorlineopt", "number")
 opt("o", "cursorline", true)
 opt("o", "colorcolumn", "80")
 
-
 vim.cmd([[
     set noswapfile
 ]])
