@@ -53,3 +53,7 @@ require('ac.barbar')
 require('ac.trouble')
 
 require('ac.dap')
+
+require('ac.fidget')
+
+require('ac.hlargs')

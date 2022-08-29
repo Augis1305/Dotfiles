@@ -117,5 +117,11 @@ return require('packer').startup({
     use('theHamsta/nvim-dap-virtual-text')
 
     use 'simrat39/rust-tools.nvim'
+
+    use('j-hui/fidget.nvim')
+
+    use('m-demare/hlargs.nvim')
+    
   end,
 })
+
