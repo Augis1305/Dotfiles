@@ -1,7 +1,7 @@
-local nvim_lsp = require('lspconfig')
-local util = require('lspconfig/util')
+local nvim_lsp = require('lspconfig') local util = require('lspconfig/util')
 local home = os.getenv('HOME')
 local utils = require('ac.telescope.utils')
+local rt = require('rust-tools')
 
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -21,7 +21,9 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>R', '<cmd>RustRun<cr>', bufopts)
-
+  vim.keymap.set('n', '<leader>ca', rt.hover_actions.hover_actions, { buffer = bufnr })
+  -- Code action groups
+  vim.keymap.set('n', '<Leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
   if client.name == 'tsserver' or client.name == 'html' or client.name == 'lua' then
     -- client.resolved_capabilities.document_formatting = false
     client.server_capabilities.documentFormattingProvider = false
@@ -137,39 +139,115 @@ local servers = {
     filetypes = { 'terraform', 'tf' },
   },
 }
+local has_rust_tools, rust_tools = pcall(require, "rust-tools")
 
-local opts = {
+if not has_rust_tools then
+else
+  rust_tools.setup {
     tools = { -- rust-tools options
-        autoSetHints = true,
-        hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "=> ",
+      -- Automatically set inlay hints (type hints)
+      autoSetHints = true,
+
+      -- Whether to show hover actions inside the hover window
+      -- This overrides the default hover handler
+      hover_with_actions = true,
+
+      runnables = {
+        -- whether to use telescope for selection menu or not
+        use_telescope = true,
+
+        -- rest of the opts are forwarded to telescope
+      },
+
+      debuggables = {
+        -- whether to use telescope for selection menu or not
+        use_telescope = true,
+
+        -- rest of the opts are forwarded to telescope
+      },
+
+      -- These apply to the default RustSetInlayHints command
+      inlay_hints = {
+
+        -- Only show inlay hints for the current line
+        only_current_line = false,
+
+        -- Event which triggers a refersh of the inlay hints.
+        -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
+        -- not that this may cause  higher CPU usage.
+        -- This option is only respected when only_current_line and
+        -- autoSetHints both are true.
+        only_current_line_autocmd = "CursorHold",
+
+        -- wheter to show parameter hints with the inlay hints or not
+        show_parameter_hints = true,
+
+        -- prefix for parameter hints
+        parameter_hints_prefix = "<- ",
+
+        -- prefix for all the other hints (type, chaining)
+        other_hints_prefix = "=> ",
+
+        -- -- whether to align to the length of the longest line in the file
+        -- max_len_align = false,
+        -- -- padding from the left if max_len_align is true
+        -- max_len_align_padding = 1,
+        -- -- whether to align to the extreme right or not
+        -- right_align = false,
+        -- -- padding from the right if right_align is true
+        -- right_align_padding = 7,
+
+        -- The color of the hints
+        highlight = "Comment",
+      },
+
+      hover_actions = {
+        -- the border that is used for the hover window
+        -- see vim.api.nvim_open_win()
+        border = {
+          { "╭", "FloatBorder" },
+          { "─", "FloatBorder" },
+          { "╮", "FloatBorder" },
+          { "│", "FloatBorder" },
+          { "╯", "FloatBorder" },
+          { "─", "FloatBorder" },
+          { "╰", "FloatBorder" },
+          { "│", "FloatBorder" },
         },
+
+        -- whether the hover action window gets automatically focused
+        auto_focus = false,
+      },
     },
 
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            -- and more: https://github.com/simrat39/rust-tools.nvim/wiki/Server-Configuration-Schema
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
+      capabilities = capabilities,
+      on_attach = on_attach,
+
+      flags = {
+        debounce_text_changes = false,
+      },
+
+      settings = {
+        ["rust-analyzer"] = {
+          assist = {
+            importGranularity = "module",
+            importPrefix = "by_self",
+          },
+          cargo = {
+            loadOutDirsFromCheck = true,
+          },
+          procMacro = {
+            enable = true,
+          },
+        },
+      },
     },
-}
-require('rust-tools').setup(opts)
+  }
+end
 
 local setup_server = function(server, config)
   if not config then
