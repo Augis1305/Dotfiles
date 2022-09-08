@@ -121,6 +121,8 @@ return require('packer').startup({
     use('j-hui/fidget.nvim')
 
     use('m-demare/hlargs.nvim')
+
+    use('lvimuser/lsp-inlayhints.nvim')
     
   end,
 })

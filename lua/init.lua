@@ -57,3 +57,5 @@ require('ac.dap')
 require('ac.fidget')
 
 require('ac.hlargs')
+
+require('ac.hints')
