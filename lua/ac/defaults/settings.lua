@@ -15,6 +15,7 @@ opt("g", "lazyredraw", true)
 opt("b", "expandtab", true) -- Use spaces instead of tabs opt("b", "shiftwidth", indent) -- Size of an indent
 opt("b", "smartindent", true) -- Insert indents automatically
 opt("b", "tabstop", indent) -- Number of spaces tabs count for
+opt('b', 'shiftwidth', indent)
 opt("o", "smarttab", true)
 opt("b", "expandtab", true)
 opt("o", "mouse", "a") -- Enables a mouse mode

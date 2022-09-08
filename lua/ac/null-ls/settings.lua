@@ -33,7 +33,17 @@ local create_runtime_condition = function(config_names)
   end
 end
 
+local eslint_runtime_condition = create_runtime_condition({
+  '.eslintrc.cjs',
+  '.eslintrc.js',
+  '.eslintrc.json',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+})
+
 local stylua_runtime_condition = create_runtime_condition({ 'stylua.toml', '.stylua.toml' })
+
+local prettier_runtime_condition = create_runtime_condition({ '.prettierrc', '.prettierrc.json' , 'prettier.config.js'})
 
 null_ls.setup({
   diagnostics_format = '[#{c}] #{m} (#{s})',
@@ -41,8 +51,20 @@ null_ls.setup({
     -- Lua
     b.formatting.stylua.with({ runtime_condition = stylua_runtime_condition }),
 
-    b.formatting.prettierd,
-    b.code_actions.eslint,
+    -- b.formatting.prettier.with({ runtime_condition = prettier_runtime_condition }),
+
+    b.formatting.prettierd.with(
+      { extra_filetypes = { 'scss', 'css', 'html' } },
+      { runtime_condition = prettier_runtime_condition }
+    ),
+
+    -- b.code_actions.eslint,
+    -- b.formatting.eslint.with 
+
+    -- b.diagnostics.eslint.with({ runtime_condition = eslint_runtime_condition }),
+    -- b.formatting.eslint,
+    -- b.code_actions.eslint,
+
 
     -- Git
     b.code_actions.gitsigns,
@@ -57,4 +79,3 @@ null_ls.setup({
 
   },
 })
-
