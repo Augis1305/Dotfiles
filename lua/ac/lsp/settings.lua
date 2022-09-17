@@ -21,9 +21,9 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>R', '<cmd>RustRun<cr>', bufopts)
-  vim.keymap.set('n', '<leader>ca', rt.hover_actions.hover_actions, { buffer = bufnr })
+  -- vim.keymap.set('n', '<leader>ca', rt.hover_actions.hover_actions, { buffer = bufnr })
   -- Code action groups
-  vim.keymap.set('n', '<Leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
+  vim.keymap.set('n', '<leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
   if client.name == 'tsserver' or client.name == 'html' or client.name == 'lua' then
     -- client.resolved_capabilities.document_formatting = false
     client.server_capabilities.documentFormattingProvider = false
@@ -90,6 +90,29 @@ local servers = {
     experimentalWorkspaceModule = true,
     semanticTokens = true,
     experimentalPostfixCompletions = true,
+    gofmt = true,
+    staticcheck = true,
+    settings = {
+      gopls = {
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
+      },
+    },
+    --   hints": {
+    --   "assignVariableTypes": true,
+    --   "compositeLiteralFields": true,
+    --   "constantValues": true,
+    --   "functionTypeParameters": true,
+    --   "parameterNames": true,
+    --   "rangeVariableTypes": true
+    -- },
   },
   pyright = {},
   clangd = {},
@@ -157,11 +180,11 @@ local setup_server = function(server, config)
 
   nvim_lsp[server].setup(config)
 end
-local has_rust_tools= pcall(require, "rust-tools")
+local has_rust_tools = pcall(require, 'rust-tools')
 
 if not has_rust_tools then
 else
-  rt.setup {
+  rt.setup({
     tools = { -- rust-tools options
       autoSetHints = true,
       hover_with_actions = true,
@@ -174,24 +197,24 @@ else
       inlay_hints = {
         auto = false,
         only_current_line = false,
-        only_current_line_autocmd = "CursorHold",
+        only_current_line_autocmd = 'CursorHold',
         show_parameter_hints = true,
-        parameter_hints_prefix = "<- ",
-        other_hints_prefix = "=> ",
+        parameter_hints_prefix = '<- ',
+        other_hints_prefix = '=> ',
 
-        highlight = "Comment",
+        highlight = 'Comment',
       },
 
       hover_actions = {
         border = {
-          { "╭", "FloatBorder" },
-          { "─", "FloatBorder" },
-          { "╮", "FloatBorder" },
-          { "│", "FloatBorder" },
-          { "╯", "FloatBorder" },
-          { "─", "FloatBorder" },
-          { "╰", "FloatBorder" },
-          { "│", "FloatBorder" },
+          { '╭', 'FloatBorder' },
+          { '─', 'FloatBorder' },
+          { '╮', 'FloatBorder' },
+          { '│', 'FloatBorder' },
+          { '╯', 'FloatBorder' },
+          { '─', 'FloatBorder' },
+          { '╰', 'FloatBorder' },
+          { '│', 'FloatBorder' },
         },
         auto_focus = false,
       },
@@ -205,10 +228,10 @@ else
       },
 
       settings = {
-        ["rust-analyzer"] = {
+        ['rust-analyzer'] = {
           assist = {
-            importGranularity = "module",
-            importPrefix = "by_self",
+            importGranularity = 'module',
+            importPrefix = 'by_self',
           },
           cargo = {
             loadOutDirsFromCheck = true,
@@ -219,10 +242,9 @@ else
         },
       },
     },
-  }
+  })
 end
 
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
-

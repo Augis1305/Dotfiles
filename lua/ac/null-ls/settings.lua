@@ -58,6 +58,8 @@ null_ls.setup({
       { runtime_condition = prettier_runtime_condition }
     ),
 
+    b.formatting.gofmt,
+
     -- b.code_actions.eslint,
     -- b.formatting.eslint.with 
 
