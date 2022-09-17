@@ -1,6 +1,6 @@
 vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↴"
+-- vim.opt.listchars:append "eol:↴"
 
 require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
