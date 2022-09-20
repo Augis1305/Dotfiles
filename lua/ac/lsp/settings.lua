@@ -50,22 +50,34 @@ local servers = {
     filetypes = { 'rust' },
     cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' },
   },
-  -- rls = { filetypes = { 'rust' } },
   jsonls = { filetypes = { 'json', 'avsc' } },
   tsserver = {
     cmd = { 'typescript-language-server', '--stdio' },
-    root_dir = function()
-      return vim.fn.getcwd()
-    end,
-    filetypes = {
-      'javascript',
-      'javascriptreact',
-      'javascript.jsx',
-      'typescript',
-      'typescriptreact',
-      'typescript.tsx',
-    },
+    -- root_dir = function()
+    --   return vim.fn.getcwd()
+    -- end,
+    -- filetypes = {
+    --   'javascript',
+    --   'javascriptreact',
+    --   'javascript.jsx',
+    --   'typescript',
+    --   'typescriptreact',
+    --   'typescript.tsx',
+    -- },
     capabilities = capabilities,
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayEnumMemberValueHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayParameterNameHints = 'all', -- 'none' | 'literals' | 'all';
+          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayVariableTypeHints = true,
+        },
+      },
+    },
   },
   html = { capabilities = capabilities },
   cssls = {
@@ -187,7 +199,6 @@ else
   rt.setup({
     tools = { -- rust-tools options
       autoSetHints = true,
-      hover_with_actions = true,
       runnables = {
         use_telescope = true,
       },
@@ -203,20 +214,6 @@ else
         other_hints_prefix = '=> ',
 
         highlight = 'Comment',
-      },
-
-      hover_actions = {
-        border = {
-          { '╭', 'FloatBorder' },
-          { '─', 'FloatBorder' },
-          { '╮', 'FloatBorder' },
-          { '│', 'FloatBorder' },
-          { '╯', 'FloatBorder' },
-          { '─', 'FloatBorder' },
-          { '╰', 'FloatBorder' },
-          { '│', 'FloatBorder' },
-        },
-        auto_focus = false,
       },
     },
     server = {
