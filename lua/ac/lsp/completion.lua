@@ -8,43 +8,49 @@ vim.lsp.handlers['textDocument/implementation'] = require('lsputil.locations').i
 -- vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
 vim.lsp.handlers['workspace/symbol'] = require('lsputil.symbols').workspace_handler
 
-local cmp_kinds = {
-  Class = ' Class',
-  Color = ' Color',
-  Constant = ' Constant',
-  Constructor = ' Constructor',
-  Enum = '了Enum',
-  EnumMember = ' EnumMember',
-  Field = 'ƒ Field',
-  File = ' File',
-  Folder = ' Folder',
-  Function = ' Function',
-  Interface = 'ﰮ Interface',
-  Keyword = ' Keyword',
-  Method = 'ƒ Method',
-  Module = ' Module',
-  Property = ' Property',
-  Snippet = '﬌ Snippet',
-  Struct = ' Struct',
-  Reference = 'Reference',
-  Text = ' Text',
-  Unit = ' Unit',
-  Value = ' Value',
-  Variable = ' Variable',
-  Operator = 'Operator',
-  Event = '  Event',
-  TypeParameter = 'TypeParameter',
-}
+-- local cmp_kinds = {
+  -- Class = ' Class',
+  -- Color = ' Color',
+  -- Constant = ' Constant',
+  -- Constructor = ' Constructor',
+  -- Enum = '了Enum',
+  -- EnumMember = ' EnumMember',
+  -- Field = 'ƒ Field',
+  -- File = ' File',
+  -- Folder = ' Folder',
+  -- Function = ' Function',
+  -- Interface = 'ﰮ Interface',
+  -- Keyword = ' Keyword',
+  -- Method = 'ƒ Method',
+  -- Module = ' Module',
+  -- Property = ' Property',
+  -- Snippet = '﬌ Snippet',
+  -- Struct = ' Struct',
+  -- Reference = 'Reference',
+  -- Text = ' Text',
+  -- Unit = ' Unit',
+  -- Value = ' Value',
+  -- Variable = ' Variable',
+  -- Operator = 'Operator',
+  -- Event = '  Event',
+  -- TypeParameter = 'TypeParameter',
+-- }
 
 require('luasnip/loaders/from_vscode').lazy_load()
 
+local ok, lspkind = pcall(require, 'lspkind')
+if not ok then
+  return
+end
+
+lspkind.init()
 -- luasnip setup
 local luasnip = require('luasnip')
 
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
+-- local has_words_before = function()
+--   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+--   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+-- end
 
 -- nvim-cmp setup
 local cmp = require('cmp')
@@ -82,16 +88,37 @@ cmp.setup({
     end, { 'i', 's' }),
   },
   formatting = {
-    format = function(_, vim_item)
-      vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-      return vim_item
-    end,
+    -- format = function(_, vim_item)
+    --   vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+    --   return vim_item
+    -- end,
+    format = lspkind.cmp_format({
+      with_text = true,
+      menu = {
+        buffer = '[buf]',
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[api]',
+        path = '[path]',
+        luasnip = '[snip]',
+        gh_issues = '[issues]',
+        tn = '[TabNine]',
+      },
+    }),
   },
   sources = {
     { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 5 },
+    { name = 'gh_issues' },
   },
+  experimental = {
+    -- I like the new menu better! Nice work hrsh7th
+    native_menu = false,
+
+    -- Let's play with this for a day or two
+    ghost_text = true,
+  },
+  fn
 })
