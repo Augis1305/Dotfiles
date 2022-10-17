@@ -34,7 +34,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local sumneko_binary = home .. '/.config/nvim/lua-language-server/bin/lua-language-server'
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local runtime_path = vim.split(package.path, ';')
