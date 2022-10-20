@@ -123,6 +123,8 @@ return require('packer').startup({
     use('m-demare/hlargs.nvim')
 
     use('lvimuser/lsp-inlayhints.nvim')
+
+    use('folke/neodev.nvim')
     
   end,
 })

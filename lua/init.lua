@@ -59,3 +59,5 @@ require('ac.fidget')
 require('ac.hlargs')
 
 require('ac.hints')
+
+require('ac.neodev')
