@@ -77,9 +77,6 @@ return require('packer').startup({
     use('lewis6991/gitsigns.nvim')
     use('tpope/vim-fugitive')
 
-    -- zk
-    use('mickael-menu/zk-nvim')
-
     -- Float term
     use('voldikss/vim-floaterm')
 
@@ -88,7 +85,7 @@ return require('packer').startup({
       as = 'catppuccin',
     })
 
-    use('lukas-reineke/indent-blankline.nvim')
+   use('lukas-reineke/indent-blankline.nvim')
 
     use({
       'phaazon/hop.nvim',
@@ -125,7 +122,11 @@ return require('packer').startup({
     use('lvimuser/lsp-inlayhints.nvim')
 
     use('folke/neodev.nvim')
-    
+
+    use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+    })
   end,
 })
 

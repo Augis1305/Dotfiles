@@ -8,22 +8,22 @@ local function on_attach(client, bufnr)
 
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>gw', vim.lsp.buf.document_symbol, bufopts)
-  vim.keymap.set('n', '<leader>gW', vim.lsp.buf.workspace_symbol, bufopts)
-  vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, bufopts)
-  vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, bufopts)
-  vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<leader>R', '<cmd>RustRun<cr>', bufopts)
-  -- vim.keymap.set('n', '<leader>ca', rt.hover_actions.hover_actions, { buffer = bufnr })
-  -- Code action groups
-  vim.keymap.set('n', '<leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
+  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  -- vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, bufopts)
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  -- vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
+  -- vim.keymap.set('n', '<leader>gw', vim.lsp.buf.document_symbol, bufopts)
+  -- vim.keymap.set('n', '<leader>gW', vim.lsp.buf.workspace_symbol, bufopts)
+  -- vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, bufopts)
+  -- vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, bufopts)
+  -- vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, bufopts)
+  -- vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.format)
+  -- vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  -- vim.keymap.set('n', '<leader>R', '<cmd>RustRun<cr>', bufopts)
+  -- -- vim.keymap.set('n', '<leader>ca', rt.hover_actions.hover_actions, { buffer = bufnr })
+  -- -- Code action groups
+  -- vim.keymap.set('n', '<leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
   if client.name == 'tsserver' or client.name == 'html' or client.name == 'lua' then
     -- client.resolved_capabilities.document_formatting = false
     client.server_capabilities.documentFormattingProvider = false
@@ -33,7 +33,6 @@ end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local sumneko_binary = home .. '/.config/nvim/lua-language-server/bin/lua-language-server'
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -128,41 +127,24 @@ local servers = {
   },
   pyright = {},
   clangd = {},
-  sumneko_lua = {
-    cmd = {
-      sumneko_binary,
-      '-E',
-      home .. '/.config/nvim/lua-language-server/main.lua',
-    },
-    filetypes = { 'lua' },
-    capabilities = capabilities,
+  lua_ls = {
     settings = {
       Lua = {
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
-          -- Setup your lua path
-          path = runtime_path,
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {
-            'vim',
-            'vim.api',
-            'nnoremap',
-            'nmap',
-            'inoremap',
-            'vnoremap',
-            'cnoremap',
-            'Util',
-          },
+          globals = {'vim'},
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-          },
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
         },
       },
     },

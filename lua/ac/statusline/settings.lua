@@ -57,6 +57,7 @@
 --         },
 --         extensions = { "fugitive", "quickfix" },
 -- })
+
 local colors = {
   none = "NONE",
   bg = "#202328",
@@ -268,7 +269,8 @@ local filesize = {
 
 local lsp = {
   function()
-    local buf_clients = vim.lsp.buf_get_clients()
+    -- local buf_clients = vim.lsp.buf_get_clients()
+    local buf_clients = vim.lsp.client()
     local clients = {}
 
     -- add client
@@ -342,10 +344,11 @@ lualine.setup {
     },
     always_divide_middle = true,
   },
+
   sections = {
-    lualine_a = {},
+    lualine_a = {'filename'},
     lualine_b = {},
-    lualine_c = { branch, mode, diagnostics, "%=", lsp },
+    lualine_c = { branch, mode, diagnostics, "%=", lsp},
     lualine_x = { diff, filetype, spaces, filesize, percent, progress },
     lualine_y = {},
     lualine_z = {},

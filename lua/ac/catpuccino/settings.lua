@@ -1,73 +1,44 @@
 local catppuccin = require('catppuccin')
 
-catppuccin.setup({
-  transparent_background = false,
-  term_colors = false,
-  styles = {
-    comments = 'italic',
-    conditionals = 'italic',
-    loops = 'NONE',
-    functions = 'NONE',
-    keywords = 'NONE',
-    strings = 'NONE',
-    variables = 'NONE',
-    numbers = 'NONE',
-    booleans = 'NONE',
-    properties = 'NONE',
-    types = 'NONE',
-    operators = 'NONE',
-  },
-  integrations = {
-    treesitter = true,
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = 'italic',
-        hints = 'italic',
-        warnings = 'italic',
-        information = 'italic',
-      },
-      underlines = {
-        errors = 'underline',
-        hints = 'underline',
-        warnings = 'underline',
-        information = 'underline',
-      },
+require("catppuccin").setup({
+    -- flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
     },
-    coc_nvim = false,
-    lsp_trouble = true,
-    cmp = true,
-    lsp_saga = false,
-    gitgutter = false,
-    gitsigns = true,
-    telescope = true,
-    nvimtree = {
-      enabled = true,
-      show_root = false,
-      transparent_panel = false,
+    transparent_background = false,
+    term_colors = false,
+    dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
     },
-    neotree = {
-      enabled = false,
-      show_root = false,
-      transparent_panel = false,
+    no_italic = true, -- Force no italic
+    no_bold = true, -- Force no bold
+    styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
     },
-    which_key = false,
-    indent_blankline = {
-      enabled = true,
-      colored_indent_levels = false,
+    color_overrides = {},
+    custom_highlights = {},
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        notify = false,
+        mini = false,
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
-    dashboard = true,
-    neogit = false,
-    vim_sneak = false,
-    fern = false,
-    barbar = true,
-    bufferline = true,
-    markdown = true,
-    lightspeed = false,
-    ts_rainbow = false,
-    hop = true,
-    notify = true,
-    telekasten = true,
-    symbols_outline = true,
-  },
 })
+

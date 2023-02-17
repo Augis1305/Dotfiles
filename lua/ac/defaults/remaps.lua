@@ -25,6 +25,9 @@ nnoremap("<C-K>", "<C-W>k")
 nnoremap("<C-L>", "<C-W>l")
 nnoremap("<C-H>", "<C-W>h")
 
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
+
 nmap("<leader>q", "<cmd>:q<cr>")
 
 vmap(">", ">gv")
