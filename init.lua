@@ -1,3 +1,8 @@
 vim.g.mapleader = " "
 
-require("init")
+require("ac.keymaps")
+require("ac.options")
+require("ac.globals")
+require("ac.functions")
+
+require("ac.lazy")
