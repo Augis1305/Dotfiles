@@ -40,7 +40,7 @@ return {
           light = "lotus",
         },
       })
-      vim.cmd([[colorscheme kanagawa]])
+      -- vim.cmd([[colorscheme kanagawa]])
     end,
   },
   {
@@ -52,7 +52,7 @@ return {
         -- ...
       })
 
-      -- vim.cmd("colorscheme github_dark_tritanopia")
+      vim.cmd("colorscheme github_dark_tritanopia")
     end,
   },
 }

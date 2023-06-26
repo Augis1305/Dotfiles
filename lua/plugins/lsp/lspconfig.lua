@@ -11,15 +11,15 @@ local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
   -- set keybinds
-  vim.keymap.set("n", "pd", "<cmd>Lspsaga peek_definition<CR>", opts)                -- see definition and make edits in window
-  vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)        -- go to implementation
-  vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)            -- see available code actions
-  vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)                 -- smart rename
-  vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)   -- show  diagnostics for line
+  vim.keymap.set("n", "pd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+  vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- go to implementation
+  vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
+  vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
+  vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
   vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-  vim.keymap.set("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)           -- jump to previous diagnostic in buffer
-  vim.keymap.set("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)           -- jump to next diagnostic in buffer
-  vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)                       -- show documentation for what is under cursor
+  vim.keymap.set("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
+  vim.keymap.set("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+  vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
   vim.keymap.set("n", "<leader><leader>f", vim.lsp.buf.format)
 
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -37,6 +37,10 @@ local on_attach = function(client, bufnr)
   telescope_mapper("gI", "lsp_implementations", nil, true)
   telescope_mapper("<space>wd", "lsp_document_symbols", { ignore_filename = true }, true)
   telescope_mapper("<space>ww", "lsp_dynamic_workspace_symbols", { ignore_filename = true }, true)
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.buf.inlay_hint(bufnr, true)
+  end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -128,6 +132,9 @@ lspconfig["lua_ls"].setup({
       diagnostics = {
         globals = { "vim" },
       },
+      hint = {
+        enable = true
+      },
       workspace = {
         -- make language server aware of runtime files
         library = {
@@ -149,7 +156,7 @@ lspconfig["tsserver"].setup({
         includeInlayEnumMemberValueHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayFunctionParameterTypeHints = true,
-        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
         includeInlayPropertyDeclarationTypeHints = true,
         includeInlayVariableTypeHints = true,
@@ -158,7 +165,7 @@ lspconfig["tsserver"].setup({
   },
 })
 
---TODO sort this out at some points
+-- TODO sort this out at some points
 -- configure rust_analyzer server
 -- local rt_status_ok, rt = pcall(require, "rust-tools")
 -- if not rt_status_ok then

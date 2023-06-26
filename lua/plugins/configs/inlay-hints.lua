@@ -2,7 +2,7 @@ if not pcall(require, "inlay-hints") then
   return false
 end
 
-require("inlay-hints").setup {
+require("inlay-hints").setup({
   -- renderer to use
   -- possible options are dynamic, eol, virtline and custom
   -- renderer = "inlay-hints/render/dynamic",
@@ -43,7 +43,7 @@ require("inlay-hints").setup {
       end,
     },
   },
-}
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("my-inlay-hints", {}),
