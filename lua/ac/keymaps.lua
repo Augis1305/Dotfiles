@@ -68,8 +68,8 @@ nnoremap("<leader>rg", "<cmd>source<cr>", { silent = true })
 nmap("<C-t>", ":vsplit | term<CR>")
 
 -- Move to previous/next
-nnoremap('<A-,>', '<Cmd>BufferPrevious<CR>')
-nnoremap('<A-.>', '<Cmd>BufferNext<CR>')
+nnoremap('<leader>p', '<Cmd>BufferPrevious<CR>')
+nnoremap('<leader>n', '<Cmd>BufferNext<CR>')
 -- Re-order to previous/next
 nnoremap('<A-<>', '<Cmd>BufferMovePrevious<CR>')
 nnoremap('<A->>', '<Cmd>BufferMoveNext<CR>')
