@@ -1,15 +1,15 @@
 return {
   {
-    "williamboman/mason-lspconfig",
-    opts = {
-      inlay_hints = { enabled = true },
-    },
-  },
-  { "jayp0521/mason-null-ls.nvim" },
-  {
     "williamboman/mason.nvim",
+    config = true,
+    enabled = true,
+    lazy = true,
+  },
+  {
+    "williamboman/mason-lspconfig",
     config = function()
       require("plugins.lsp.mason")
     end,
   },
+  { "jayp0521/mason-null-ls.nvim" },
 }

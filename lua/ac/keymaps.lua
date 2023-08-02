@@ -24,9 +24,9 @@ nnoremap("<C-f>", function()
   require("telescope.builtin").live_grep(require("telescope.themes").get_ivy())
 end)
 
-nnoremap("<C-p>", function()
-  require("telescope.builtin").git_files({ prompt_title = "Git files" })
-end)
+-- nnoremap("<C-p>", function()
+--   require("telescope.builtin").git_files({ prompt_title = "Git files" })
+-- end)
 
 nnoremap("<leader>fs", function(input)
   vim.schedule(function()
@@ -68,11 +68,12 @@ nnoremap("<leader>rg", "<cmd>source<cr>", { silent = true })
 nmap("<C-t>", ":vsplit | term<CR>")
 
 -- Move to previous/next
-nnoremap('<leader>p', '<Cmd>BufferPrevious<CR>')
-nnoremap('<leader>n', '<Cmd>BufferNext<CR>')
+nnoremap('<A-,>', '<Cmd>BufferPrevious<CR>')
+nnoremap('<A-.>', '<Cmd>BufferNext<CR>')
 -- Re-order to previous/next
-nnoremap('<A-<>', '<Cmd>BufferMovePrevious<CR>')
-nnoremap('<A->>', '<Cmd>BufferMoveNext<CR>')
+--
+-- nnoremap('<A-<>', '<Cmd>BufferMovePrevious<CR>')
+-- nnoremap('<A->>', '<Cmd>BufferMoveNext<CR>')
 -- Goto buffer in position...
 nnoremap('<A-1>', '<Cmd>BufferGoto 1<CR>')
 nnoremap('<A-2>', '<Cmd>BufferGoto 2<CR>')

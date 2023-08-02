@@ -19,7 +19,7 @@ map_tele("<space>f/", "grep_last_search", {
 })
 
 -- Files
-map_tele("<space>ft", "git_files")
+map_tele("<C-p>", "git_files")
 map_tele("<space>fg", "multi_rg")
 map_tele("<space>fs", "fs")
 map_tele("<space>pp", "project_search")
@@ -33,7 +33,7 @@ map_tele("<space>gc", "git_commits")
 -- Nvim
 map_tele("<space>fb", "buffers")
 map_tele("<space>lw", "live_workspace")
-map_tele("<space>fa", "installed_plugins")
+map_tele("<space>ip", "installed_plugins")
 map_tele("<space>fi", "search_all_files")
 map_tele("<space>ff", "curbuf")
 map_tele("<space>fh", "help_tags")
