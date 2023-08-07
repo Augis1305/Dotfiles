@@ -2,7 +2,7 @@ local indent = 2
 
 local options = {
   redrawtime = 1000,
-  lazyredraw = true,
+  -- lazyredraw = true,
   expandtab = true, -- Use spaces instead of tabs
   smartindent = true, -- Insert indents automatically
   tabstop = indent, -- Numbfer of spaces tabs count for
