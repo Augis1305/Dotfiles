@@ -101,3 +101,5 @@ nnoremap("<leader>tq", "<cmd>Trouble quickfix<cr>")
 nnoremap("<leader>tx", "<cmd>TroubleClose<cr>")
 
 inoremap("<C-BS>", "<Esc>cvb")
+
+
