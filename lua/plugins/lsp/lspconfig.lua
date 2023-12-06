@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
-local inlay = require("plugins.configs.inlay-hints")
 local telescope_mapper = require("plugins.configs.mappings")
 
 -- enable keybinds only for when lsp server available
@@ -36,9 +35,6 @@ local on_attach = function(client, bufnr)
   telescope_mapper("<space>wd", "lsp_document_symbols", { ignore_filename = true }, true)
   telescope_mapper("<space>ww", "lsp_dynamic_workspace_symbols", { ignore_filename = true }, true)
 
-  if client.server_capabilities.inlayHintProvider then
-    vim.lsp.buf.inlay_hint(bufnr, true)
-  end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -92,7 +88,7 @@ lspconfig["rust_analyzer"].setup({
 })
 
 -- configure gopls
-lspconfig["gopls"].setup({
+lspconfig.gopls.setup({
   inlay_hints = { enabled = true },
   capabilities = capabilities,
   on_attach = on_attach,
@@ -106,15 +102,6 @@ lspconfig["gopls"].setup({
       analyses = {
         unusedparams = true,
       },
-      -- hints = inlay and {
-      --   assignVariableTypes = true,
-      --   compositeLiteralFields = true,
-      --   compositeLiteralTypes = true,
-      --   constantValues = true,
-      --   functionTypeParameters = true,
-      --   parameterNames = true,
-      --   rangeVariableTypes = true,
-      -- } or nil,
       hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,
@@ -129,7 +116,7 @@ lspconfig["gopls"].setup({
 })
 --
 -- configure lua server (with special settings)
-lspconfig["lua_ls"].setup({
+lspconfig.lua_ls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -138,9 +125,6 @@ lspconfig["lua_ls"].setup({
       -- make the language server recognize "vim" global
       diagnostics = {
         globals = { "vim" },
-      },
-      hint = {
-        enable = true,
       },
       workspace = {
         -- make language server aware of runtime files
@@ -153,24 +137,24 @@ lspconfig["lua_ls"].setup({
   },
 })
 
-lspconfig["tsserver"].setup({
+lspconfig.tsserver.setup({
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     typescript = {
-      inlayHints = inlay and {
-        includeInlayParameterNameHints = "literal",
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
         includeInlayFunctionParameterTypeHints = true,
         includeInlayVariableTypeHints = false,
         includeInlayPropertyDeclarationTypeHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
-      } or nil ,
+      } or nil,
     },
     javascript = {
-      inlayHints = inlay and {
+      inlayHints = {
         includeInlayParameterNameHints = "all",
         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
         includeInlayFunctionParameterTypeHints = true,

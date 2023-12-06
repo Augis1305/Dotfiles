@@ -148,7 +148,7 @@ local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   sections = { "error", "warn", "hint" },
-  symbols = { error = " ", warn = " ", hint = " " },
+  symbols = { error = "  ", warn = "  ", hint = " " },
   diagnostics_color = {
     error = { fg = colors.red },
     warn = { fg = colors.yellow },
@@ -293,3 +293,6 @@ lualine.setup({
     lualine_z = {},
   },
 })
+
+
+

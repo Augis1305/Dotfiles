@@ -8,7 +8,6 @@ local cnoremap = Remap.cnoremap
 local mapall = Remap.mapall
 local nmap = Remap.nmap
 
-
 inoremap("jk", "<esc>")
 vnoremap("C-j", "<esc>")
 vnoremap("C-c", "<esc>")
@@ -68,31 +67,31 @@ nnoremap("<leader>rg", "<cmd>source<cr>", { silent = true })
 nmap("<C-t>", ":vsplit | term<CR>")
 
 -- Move to previous/next
-nnoremap('<A-,>', '<Cmd>BufferPrevious<CR>')
-nnoremap('<A-.>', '<Cmd>BufferNext<CR>')
+nnoremap("<A-,>", "<Cmd>BufferPrevious<CR>")
+nnoremap("<A-.>", "<Cmd>BufferNext<CR>")
 -- Re-order to previous/next
 --
 -- nnoremap('<A-<>', '<Cmd>BufferMovePrevious<CR>')
 -- nnoremap('<A->>', '<Cmd>BufferMoveNext<CR>')
 -- Goto buffer in position...
-nnoremap('<A-1>', '<Cmd>BufferGoto 1<CR>')
-nnoremap('<A-2>', '<Cmd>BufferGoto 2<CR>')
-nnoremap('<A-3>', '<Cmd>BufferGoto 3<CR>')
-nnoremap('<A-4>', '<Cmd>BufferGoto 4<CR>')
-nnoremap('<A-5>', '<Cmd>BufferGoto 5<CR>')
-nnoremap('<A-6>', '<Cmd>BufferGoto 6<CR>')
-nnoremap('<A-7>', '<Cmd>BufferGoto 7<CR>')
-nnoremap('<A-8>', '<Cmd>BufferGoto 8<CR>')
-nnoremap('<A-9>', '<Cmd>BufferGoto 9<CR>')
-nnoremap('<A-0>', '<Cmd>BufferLast<CR>')
+nnoremap("<A-1>", "<Cmd>BufferGoto 1<CR>")
+nnoremap("<A-2>", "<Cmd>BufferGoto 2<CR>")
+nnoremap("<A-3>", "<Cmd>BufferGoto 3<CR>")
+nnoremap("<A-4>", "<Cmd>BufferGoto 4<CR>")
+nnoremap("<A-5>", "<Cmd>BufferGoto 5<CR>")
+nnoremap("<A-6>", "<Cmd>BufferGoto 6<CR>")
+nnoremap("<A-7>", "<Cmd>BufferGoto 7<CR>")
+nnoremap("<A-8>", "<Cmd>BufferGoto 8<CR>")
+nnoremap("<A-9>", "<Cmd>BufferGoto 9<CR>")
+nnoremap("<A-0>", "<Cmd>BufferLast<CR>")
 -- Pin/unpin buffer
-nnoremap('<leader>bp', '<Cmd>BufferPin<CR>')
+nnoremap("<leader>bp", "<Cmd>BufferPin<CR>")
 -- Close buffer
-nnoremap('<leader>cb', '<Cmd>BufferClose<CR>', opts)
-nnoremap('<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>')
-nnoremap('<Space>bd', '<Cmd>BufferOrderByDirectory<CR>')
-nnoremap('<Space>bl', '<Cmd>BufferOrderByLanguage<CR>')
-nnoremap('<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
+nnoremap("<leader>cb", "<Cmd>BufferClose<CR>", opts)
+nnoremap("<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>")
+nnoremap("<Space>bd", "<Cmd>BufferOrderByDirectory<CR>")
+nnoremap("<Space>bl", "<Cmd>BufferOrderByLanguage<CR>")
+nnoremap("<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>")
 
 nnoremap("<leader>tw", "<cmd>Trouble workspace_diagnostics<cr>")
 nnoremap("<leader>td", "<cmd>Trouble document_diagnostics<cr>")
@@ -101,3 +100,9 @@ nnoremap("<leader>tq", "<cmd>Trouble quickfix<cr>")
 nnoremap("<leader>tx", "<cmd>TroubleClose<cr>")
 
 inoremap("<C-BS>", "<Esc>cvb")
+
+if vim.lsp.inlay_hint then
+  vim.keymap.set("n", "<leader>uh", function()
+    vim.lsp.inlay_hint(0, nil)
+  end, { desc = "Toggle Inlay Hints" })
+end

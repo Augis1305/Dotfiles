@@ -1,16 +1,8 @@
-vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
-
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup({
-        -- for example, context is off by default, use this to turn it on
-        space_char_blankline = " ",
-        show_current_context = true,
-        show_current_context_start = true,
-      })
+      require("plugins.configs.indent")
     end,
   },
 }

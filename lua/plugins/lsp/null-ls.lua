@@ -23,10 +23,6 @@ null_ls.setup({
     formatting.black.with({ extra_args = { "--fast" } }),
     formatting.isort,
     diagnostics.flake8,
-    diagnostics.eslint_d.with({ -- js/ts linter
-      condition = function(utils)
-        return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
-      end,
-    }),
+    diagnostics.eslint_d
   },
 })

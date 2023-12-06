@@ -1,7 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local lspkind = require("lspkind")
-local compare = require("cmp.config.compare")
+-- local lspkind = require("lspkind")
+-- local compare = require("cmp.config.compare")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -71,10 +71,10 @@ cmp.setup({
   }),
   formatting = {
     fields = { "kind", "abbr", "menu" },
-    format = lspkind.cmp_format({
-      maxwidth = 50,
-      ellipsis_char = "...",
-    }),
+    -- format = lspkind.cmp_format({
+    --   maxwidth = 50,
+    --   ellipsis_char = "...",
+    -- }),
   },
   sources = {
     { name = "copilot",     group_index = 2 },
