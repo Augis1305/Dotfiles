@@ -18,6 +18,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = true },
+      inlay_hint = { enabled = true },
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {

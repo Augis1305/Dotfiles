@@ -34,6 +34,9 @@ local on_attach = function(client, bufnr)
   telescope_mapper("gI", "lsp_implementations", nil, true)
   telescope_mapper("<space>wd", "lsp_document_symbols", { ignore_filename = true }, true)
   telescope_mapper("<space>ww", "lsp_dynamic_workspace_symbols", { ignore_filename = true }, true)
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+  end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -80,10 +83,10 @@ lspconfig.tsserver.setup({
   settings = {
     typescript = {
       inlayHints = {
-        includeInlayParameterNameHints = "literal",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
         includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = false,
+        includeInlayVariableTypeHints = true,
         includeInlayPropertyDeclarationTypeHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
@@ -130,7 +133,7 @@ lspconfig.gopls.setup({
       analyses = {
         unusedparams = true,
       },
-      hints = inlays and {
+      hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,
         compositeLiteralTypes = true,
