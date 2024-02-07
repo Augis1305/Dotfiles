@@ -23,11 +23,8 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "rust_analyzer",
     "jsonls",
-    -- "tsserver",
     "pyright",
   },
-  inlay_hints = { enabled = true },
-
   automatic_installation = true,
   run_on_start = true,
 })

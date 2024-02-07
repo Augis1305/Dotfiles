@@ -13,10 +13,18 @@ return {
     },
   },
 
+  -- lsp servers
   {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = true },
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = false,
+          },
+        },
+      },
     },
     config = function()
       require("plugins.lsp.lspconfig")
@@ -28,8 +36,5 @@ return {
     config = function()
       require("plugins.lsp.null-ls")
     end,
-  },
-  {
-    "simrat39/inlay-hints.nvim",
   },
 }

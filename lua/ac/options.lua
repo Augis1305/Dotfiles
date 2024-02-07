@@ -8,7 +8,7 @@ local options = {
   tabstop = indent, -- Numbfer of spaces tabs count for
   shiftwidth = indent,
   smarttab = true,
-  mouse = 'a', -- Enabels mouse mode
+  mouse = "a", -- Enabels mouse mode
   hidden = true, -- Enable modified buffers in background
   ignorecase = true, -- Ingnore cases
   joinspaces = false, -- No double spaces with join after a dot
@@ -21,30 +21,30 @@ local options = {
   splitbelow = true,
   splitright = true,
   termguicolors = true,
-  wildmode = 'longest:full,full',
+  wildmode = "longest:full,full",
   list = true, -- Show some invisible characters (tabs, etc)
   number = true, -- print line number
   relativenumber = true,
   wrap = false,
-  clipboard = 'unnamedplus',
+  clipboard = "unnamedplus",
   title = true,
   updatetime = 100,
   backup = false,
   ruler = true,
-  signcolumn = 'yes',
+  signcolumn = "yes",
   cindent = true,
   showmode = true,
   showcmd = true,
-  encoding = 'utf-8',
-  backspace = 'indent,eol,start',
+  encoding = "utf-8",
+  backspace = "indent,eol,start",
   cmdheight = 1,
   undofile = false,
-  completeopt = 'menu,menuone,noselect',
-  shortmess = 'csa',
-  background = 'dark',
+  completeopt = "menu,menuone,noselect",
+  shortmess = "csa",
+  background = "dark",
   cursorline = true,
-  cursorlineopt = 'number',
-  colorcolumn = '80',
+  cursorlineopt = "number",
+  colorcolumn = "80",
 }
 
 vim.cmd([[
@@ -54,6 +54,17 @@ vim.cmd([[
 vim.cmd([[
   syntax on
 ]])
+
+vim.opt.listchars = {
+  space = "⋅",
+  eol = "↴",
+  tab = "▎.",
+  -- tab = "|_>",
+  trail = "•",
+  extends = "❯",
+  precedes = "❮",
+  nbsp = "",
+}
 
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
