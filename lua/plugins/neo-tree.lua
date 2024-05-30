@@ -7,6 +7,7 @@ return {
     dependencies = { { "MunifTanjim/nui.nvim", module = "nui" }, "nvim-lua/plenary.nvim" },
     keys = {
       { "<C-n>", "<cmd>Neotree toggle<cr>", desc = "NeoTree toggle" },
+      { "<leader>e", "<cmd>Neotree toggle float<cr>", desc = "NeoTree toggle float" },
     },
     config = function()
       require("neo-tree").setup({

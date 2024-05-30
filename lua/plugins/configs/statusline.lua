@@ -51,7 +51,7 @@ local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
 
-local null_ls = require("null-ls")
+-- local null_ls = require("null-ls")
 -- local colors = require "user.highlights.palette"
 
 local mode_names = {
@@ -220,8 +220,8 @@ local lsp = {
       end
     end
 
-    local supported_formatters = null_ls.list_registered_formatters(vim.bo.filetype)
-    vim.list_extend(clients, supported_formatters)
+    -- local supported_formatters = null_ls.list_registered_formatters(vim.bo.filetype)
+    -- vim.list_extend(clients, supported_formatters)
 
     if #clients > 0 then
       return table.concat(clients, ", ")

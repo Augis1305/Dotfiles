@@ -2,7 +2,6 @@ return {
   {
     "ThePrimeagen/harpoon",
     config = function()
-
       require("harpoon").setup({})
 
       vim.keymap.set("n", "<leader>ha", ":lua require('harpoon.mark').add_file()<CR>")

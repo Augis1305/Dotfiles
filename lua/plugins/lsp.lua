@@ -19,6 +19,9 @@ return {
     opts = {
       inlay_hints = { enabled = true },
       inlay_hint = { enabled = true },
+      codelens = {
+        enabled = true,
+      },
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
@@ -31,11 +34,22 @@ return {
       require("plugins.lsp.lspconfig")
     end,
   },
-
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("plugins.lsp.null-ls")
-    end,
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        -- Conform will run multiple formatters sequentially
+        python = { "isort", "black" },
+        -- Use a sub-list to run only the first available formatter
+        javascript = { { "prettierd", "prettier" } },
+        go = { "gofmt", "gofumpt", "goimports_reviser", "golines", "goimports" },
+      },
+      format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
   },
 }

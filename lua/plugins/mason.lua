@@ -11,5 +11,4 @@ return {
       require("plugins.lsp.mason")
     end,
   },
-  { "jayp0521/mason-null-ls.nvim" },
 }

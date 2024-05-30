@@ -29,18 +29,18 @@ require("mason-lspconfig").setup({
   run_on_start = true,
 })
 
-require("mason-null-ls").setup({
-  -- list of formatters & linters for mason to install
-  ensure_installed = {
-    "prettier", -- ts/js formatter
-    "stylua",   -- lua formatter
-    "eslint_d", -- ts/js linter
-    "pylint",   -- ts/js linter
-    "black",
-    "flake8",
-    "isort",
-    "sonarling-language-server"
-  },
-  -- auto-install configured formatters & linters (with null-ls)
-  automatic_installation = true,
-})
+-- require("mason-null-ls").setup({
+--   -- list of formatters & linters for mason to install
+--   ensure_installed = {
+--     "prettier", -- ts/js formatter
+--     "stylua",   -- lua formatter
+--     "eslint_d", -- ts/js linter
+--     "pylint",   -- ts/js linter
+--     "black",
+--     "flake8",
+--     "isort",
+--     "sonarling-language-server"
+--   },
+--   -- auto-install configured formatters & linters (with null-ls)
+--   automatic_installation = true,
+-- })

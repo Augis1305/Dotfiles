@@ -57,7 +57,7 @@ return {
       },
     },
     config = function()
-      vim.cmd([[colorscheme rose-pine]])
+      vim.cmd([[colorscheme catppuccin-mocha]])
     end,
   },
   -- {

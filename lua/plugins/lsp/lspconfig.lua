@@ -31,11 +31,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 
   telescope_mapper("gr", "lsp_references", nil, true)
-  telescope_mapper("gI", "lsp_implementations", nil, true)
+  telescope_mapper("gi", "lsp_implementations", nil, true)
   telescope_mapper("<space>wd", "lsp_document_symbols", { ignore_filename = true }, true)
   telescope_mapper("<space>ww", "lsp_dynamic_workspace_symbols", { ignore_filename = true }, true)
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end
 end
 
@@ -43,15 +43,6 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
--- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
 
 lspconfig["clangd"].setup({
   capabilities = capabilities,
@@ -96,8 +87,8 @@ lspconfig.tsserver.setup({
       inlayHints = {
         includeInlayParameterNameHints = "all",
         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
         includeInlayPropertyDeclarationTypeHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
@@ -133,6 +124,7 @@ lspconfig.gopls.setup({
       analyses = {
         unusedparams = true,
       },
+      codelenses = { enable = true },
       hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,
@@ -165,28 +157,5 @@ lspconfig.lua_ls.setup({
         },
       },
     },
-  },
-})
-
-require("sonarlint").setup({
-  server = {
-    cmd = {
-      vim.fn.expand("$MASON/packages/sonarlint-language-server/sonarlint-language-server"),
-      -- Ensure that sonarlint-language-server uses stdio channel
-      "-stdio",
-      "-analyzers",
-      -- paths to the analyzers you need, using those for python and java in this example
-      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
-      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
-      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonargo.jar"),
-    },
-  },
-  filetypes = {
-    -- Tested and working
-    "python",
-    -- Requires nvim-jdtls, otherwise an error message will be printed
-    "go",
-    "ts",
-    "js",
   },
 })
